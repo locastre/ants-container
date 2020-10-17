@@ -11,11 +11,11 @@ RUN wget https://github.com/ANTsX/ANTs/archive/v2.3.4.tar.gz && \
 	mkdir ANTs-2.3.4/build && \
 	cd ANTs-2.3.4/build && \
 	cmake ../ && \
-	make -j4
+	make -j8
 
-RUN	cd ANTS-build/Examples && \
-	mkdir -p /opt/ants/bin && \
-	cp  `ls | awk '! /\.a|\.cxx|\.cmake|Makefile|CMakeFiles|TestSuite/'` /opt/ants/bin && \
+RUN	mkdir -p /opt/ants/bin && \
+	cd  /ANTs-2.3.4/build/ANTS-build/Examples && \
+	cp `ls | awk '! /\.a|\.cxx|\.cmake|Makefile|CMakeFiles|TestSuite/'` /opt/ants/bin && \
 	mv /ANTs-2.3.4/Scripts /opt/ants && \ 
 	chmod -R 755 /opt/ants && \
 	rm -rf /ANTs-2.3.4 && \
